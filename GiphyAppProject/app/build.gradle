@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "akash.com.giphyapp"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"http://api.giphy.com/v1/gifs\"")
+            buildConfigField("String", "API_KEY", "\"dc6zaTOxFJmzC\"")
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "\"http://api.giphy.com/v1/gifs\"")
+            buildConfigField("String", "API_KEY", "\"dc6zaTOxFJmzC\"")
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+
+    implementation 'com.google.code.gson:gson:2.8.2'
+
+    //Butter knife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+/*
+    implementation 'com.google.firebase:firebase-crash:11.8.0'
+*/
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    // dependency injection
+    implementation 'com.google.dagger:dagger:2.11'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    implementation 'javax.inject:javax.inject:1'
+
+    // reactive
+    implementation "io.reactivex.rxjava2:rxjava:2.1.9"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+
+    // logger
+    implementation "com.jakewharton.timber:timber:4.5.1"
+
+    // image
+    implementation "com.github.bumptech.glide:glide:4.6.1"
+
+    // network
+    implementation "com.amitshekhar.android:rx2-android-networking:1.0.1"
+
+    // ExoPlayer
+    implementation 'com.google.android.exoplayer:exoplayer:r2.5.1'
+
+    // Object Box
+    implementation "io.objectbox:objectbox-android:$objectboxVersion"
+/*
+    // CrashAnalytics
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.3'*/
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+apply plugin: 'io.objectbox'
